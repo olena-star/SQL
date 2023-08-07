@@ -1,0 +1,40 @@
+ homework 02.08.
+1.Вывести ко-во заблокированных юзеров
+
+db.users.updateMany(
+    { country: 'China' }, 
+    { $set: { is_blocked: true } } 
+)
+
+2. Вывести страны незаблокированных юзеров
+
+db.users.find(
+    { is_blocked: { $ne: true } }, 
+    { fullname: 1, _id: 0 } 
+)
+
+
+Заблокировать юзеров из China
+
+db.users.updateMany(
+    { country: 'China' }, 
+    { $set: { is_blocked: true } } 
+)
+
+Увеличить баланс всех незаблокированных юзеров на 100
+
+db.users.updateMany(
+  { blocked: false }, 
+  { $inc: { balance: 100 } } 
+)
+
+Добавить несколько реакций в коллекцию reactions
+
+const reactionsToAdd = [
+  { user: "user1", reaction: "like", timestamp: new Date() },
+  { user: "user2", reaction: "love", timestamp: new Date() },
+  { user: "user3", reaction: "thumbs_up", timestamp: new Date() }
+];
+
+db.reactions.insertMany(reactionsToAdd);
+
