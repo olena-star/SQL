@@ -1,0 +1,10 @@
+
+Найти количество сотрудников из департамента с айди 60, которые зарабатывают больше средней зарплаты по компании
+
+
+SELECT COUNT(*) AS employee_count
+FROM employees
+WHERE department_id = 60 AND salary > (
+    SELECT AVG(salary)
+    FROM employees
+);
